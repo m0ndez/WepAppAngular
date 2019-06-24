@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { AppComponent } from './app.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: AppComponent},
+  {path: 'home', component: WelcomepageComponent},
   {path: 'user', loadChildren: './users/users.module#UsersModule'},
   {path: '**', component: PagenotfoundComponent}
 
