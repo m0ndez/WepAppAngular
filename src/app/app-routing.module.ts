@@ -6,13 +6,14 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: AppComponent},
+  {path: 'user', loadChildren: './users/users.module#UsersModule'},
   {path: '**', component: PagenotfoundComponent}
 
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash: true,preloadingStrategy: PreloadAllModules})],
+  imports: [RouterModule.forRoot(routes,{ useHash: true, preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
