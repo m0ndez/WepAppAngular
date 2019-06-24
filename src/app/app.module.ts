@@ -8,12 +8,14 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { WelcomepageComponent } from './welcomepage/welcomepage.component';
+import { AboutmeComponent } from './aboutme/aboutme.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PagenotfoundComponent,
-    WelcomepageComponent
+    WelcomepageComponent,
+    AboutmeComponent
   ],
   imports: [
     BrowserModule,
