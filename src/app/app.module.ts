@@ -6,16 +6,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { WelcomepageComponent } from './welcomepage/welcomepage.component';
 import { AboutmeComponent } from './aboutme/aboutme.component';
+import { HeaderComponent } from './header/header.component';
+
+
+// For MDB Angular Free
+import { StickyHeaderModule, NavbarModule } from 'angular-bootstrap-md'
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
     AppComponent,
     PagenotfoundComponent,
     WelcomepageComponent,
-    AboutmeComponent
+    AboutmeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +29,9 @@ import { AboutmeComponent } from './aboutme/aboutme.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    StickyHeaderModule,
+    NavbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
