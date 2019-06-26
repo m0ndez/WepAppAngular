@@ -12,7 +12,7 @@ import { HeaderComponent } from './header/header.component';
 
 
 // For MDB Angular Free
-import { StickyHeaderModule, NavbarModule } from 'angular-bootstrap-md'
+import { StickyHeaderModule, NavbarModule, ButtonsModule } from 'angular-bootstrap-md';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 @NgModule({
@@ -31,9 +31,13 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     StickyHeaderModule,
-    NavbarModule
+    NavbarModule,
+    ButtonsModule
   ],
   providers: [],
+  exports: [
+    HeaderComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
