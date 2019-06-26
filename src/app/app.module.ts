@@ -12,8 +12,17 @@ import { HeaderComponent } from './header/header.component';
 
 
 // For MDB Angular Free
-import { StickyHeaderModule, NavbarModule, ButtonsModule } from 'angular-bootstrap-md';
+import {
+  StickyHeaderModule,
+  NavbarModule,
+  ButtonsModule,
+  ModalModule,
+  TooltipModule,
+  PopoverModule,
+  WavesModule, TableModule
+} from 'angular-bootstrap-md';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import {UsersService} from './users/shared/users.service';
 
 @NgModule({
   declarations: [
@@ -26,15 +35,21 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     StickyHeaderModule,
     NavbarModule,
-    ButtonsModule
+    ButtonsModule,
+    ModalModule,
+    TooltipModule,
+    PopoverModule,
+    WavesModule,
+    TableModule
   ],
-  providers: [],
+  providers: [UsersService],
   exports: [
     HeaderComponent
   ],

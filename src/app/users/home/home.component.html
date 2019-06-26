@@ -1,7 +1,62 @@
 <app-headeru></app-headeru>
 
+<button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample"
+        (click)="frame.show()" mdbWavesEffect>
+  Test alert sign in
+</button>
+
+<div mdbModal #frame="mdbModal" class="modal fade bottom modal-scrolling" id="frameModalTop" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: true, ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-frame modal-bottom modal-notify modal-warning" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Body-->
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center align-items-center">
+
+          <p class="pt-3 pr-2">Please Sign in first before editing users</p>
+
+          <a type="button" mdbBtn color="primary" class="waves-light" mdbWavesEffect>Sign in
+            <i class="fas fa-key ml-1"></i>
+          </a>
+          <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect
+             data-dismiss="modal" (click)="frame.hide()">Later</a>
+        </div>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
 
 <div class="flex-center flex-column" style="height: 20vh">
 <h1> TABLE Here..  </h1><br>
 <footer> Foot test </footer>
+</div>
+
+<div class="container">
+  <table mdbTable #tableEl="mdbTable" class="z-depth-2">
+    <thead>
+    <tr>
+      <th *ngFor="let head of headElements; let i = index" scope="col">{{head}}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let el of elements; let i = index">
+      <th *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex"
+          scope="row">{{el.id}}</th>
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.first}}</td>
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.last}}</td>
+      <td *ngIf="i+1 >= mdbTablePagination.firstItemIndex && i < mdbTablePagination.lastItemIndex">{{el.handle}}</td>
+    </tr>
+    </tbody>
+    <tfoot class="grey lighten-5 w-100">
+    <tr>
+      <td colspan="5">
+        <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="elements"></mdb-table-pagination>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
 </div>
