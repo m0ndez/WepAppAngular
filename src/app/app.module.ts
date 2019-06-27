@@ -23,6 +23,7 @@ import {
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {UsersService} from './users/shared/users.service';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     TableModule,
     InputsModule,
     InputUtilitiesModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [UsersService],
   exports: [

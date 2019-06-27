@@ -7,6 +7,7 @@ import {ButtonsModule, InputsModule, MDBBootstrapModule, NavbarModule, TableModu
 import { HeaderuComponent } from './headeru/headeru.component';
 import {FormsModule} from '@angular/forms';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [HomeComponent, HeaderuComponent],
@@ -21,6 +22,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     FormsModule,
     WavesModule,
     Ng2SearchPipeModule,
+    NgxPaginationModule,
   ]
 })
 export class UsersModule { }

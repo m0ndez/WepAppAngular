@@ -53,7 +53,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="animated fadeIn" *ngFor="let el of elements| filter:search; let i = index">
+    <tr class="animated fadeIn" *ngFor="let el of elements| filter:search| paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
       <th
           scope="row">{{ i + 1}}</th>
       <td >{{el.firstname}}</td>
@@ -62,14 +62,15 @@
       <td >{{el.email}}</td>
       <td *ngIf="button === true" class="animated fadeIn"><button mdbBtn type="button" color="default" outline="true" size="sm" mdbWavesEffect>Edit</button>
         <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect (click)="pushDelete(el._id)">Delete</button></td>
-      <td *ngIf="button === false" class="animated fadeOut"><button mdbBtn type="button" color="default" outline="true" size="sm" mdbWavesEffect>Edit</button>
+      <td *ngIf="button === false" class="animated fadeOut" disabled><button mdbBtn type="button" color="default" outline="true" size="sm" mdbWavesEffect>Edit</button>
         <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect>Delete</button></td>
     </tr>
     </tbody>
     <tfoot class="grey lighten-5 w-100">
     <tr>
       <td colspan="6">
-
+        <pagination-controls class="float-right" (pageChange)="p = $event" autoHide="true" responsive="true"
+                             screenReaderCurrentLabel="p[i]"></pagination-controls>
       </td>
     </tr>
     </tfoot>

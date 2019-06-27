@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 @ViewChild(MdbTableDirective) mdbTable: MdbTableDirective;
+  p: number = 1;
 elements: Users[];
 previous: string;
 search;
@@ -40,7 +41,6 @@ sub: Subscription
 
   pushDelete(id) {
   console.log(id)
-
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -50,10 +50,14 @@ sub: Subscription
       cancelButtonColor: '#3085d6',
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
-      if (result.value) {
+      console.log(result.value)
+      if (result === true) {
+        this.service.deleteUser(id).subscribe((res) => {
+          console.log(res)
+        })
         Swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'User has been deleted.',
           'success'
         )
       }
