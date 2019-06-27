@@ -19,10 +19,11 @@ import {
   ModalModule,
   TooltipModule,
   PopoverModule,
-  WavesModule, TableModule
+  WavesModule, TableModule, InputsModule, InputUtilitiesModule
 } from 'angular-bootstrap-md';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {UsersService} from './users/shared/users.service';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,10 @@ import {UsersService} from './users/shared/users.service';
     TooltipModule,
     PopoverModule,
     WavesModule,
-    TableModule
+    TableModule,
+    InputsModule,
+    InputUtilitiesModule,
+    Ng2SearchPipeModule
   ],
   providers: [UsersService],
   exports: [
