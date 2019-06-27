@@ -10,7 +10,6 @@ import { WelcomepageComponent } from './welcomepage/welcomepage.component';
 import { AboutmeComponent } from './aboutme/aboutme.component';
 import { HeaderComponent } from './header/header.component';
 
-
 // For MDB Angular Free
 import {
   StickyHeaderModule,
