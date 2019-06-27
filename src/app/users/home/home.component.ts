@@ -22,6 +22,13 @@ sub: Subscription
   constructor(private service: UsersService) { }
 
   ngOnInit() {
+    this.getAll()
+    this.mdbTable.setDataSource(this.elements);
+    this.elements = this.mdbTable.getDataSource();
+    this.previous = this.mdbTable.getDataSource();
+  }
+
+  getAll() {
     this.sub = this.service.getAll().subscribe((res) => {
       this.elements = res['data']
       console.log(this.elements)
@@ -30,9 +37,6 @@ sub: Subscription
     }, () => {
       console.log('Completely load data')
     })
-    this.mdbTable.setDataSource(this.elements);
-    this.elements = this.mdbTable.getDataSource();
-    this.previous = this.mdbTable.getDataSource();
   }
 
   openTools() {
@@ -51,15 +55,28 @@ sub: Subscription
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       console.log(result.value)
-      if (result === true) {
-        this.service.deleteUser(id).subscribe((res) => {
+      if (result.value === true) {
+        this.service.deleteUser(id +1).subscribe((res) => {
           console.log(res)
+          if(res !== 200) {
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: res['error']['message'],
+            });
+          } else  {
+            Swal.fire(
+              'Deleted!',
+              'User has been deleted.',
+              'success'
+            )
+            this.getAll()
+          }
+        },(error) => {
+          console.log(error)
+        }, () => {
+          console.log('Service is no problem')
         })
-        Swal.fire(
-          'Deleted!',
-          'User has been deleted.',
-          'success'
-        )
       }
     })
 

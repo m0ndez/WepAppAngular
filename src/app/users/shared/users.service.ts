@@ -18,6 +18,6 @@ export class UsersService {
   }
 
   deleteUser(id) {
-    return this.http.delete( this.apiUrl + id, {headers: this.header})
+    return this.http.delete( this.apiUrl + '/' + id, {headers: this.header})
   }
 }

@@ -31,15 +31,18 @@
 <h1> TABLE Here..Some  </h1>
 </div>
 <div class="container z-depth-2 animated fadeInRight" style="min-width: 20em">
-  <div class="row">
-    <div class="col-md-12 mx-auto">
-      <div class="md-form">
-        <input type="text" [(ngModel)]="search" class="form-control" id="search" mdbInput>
-        <label for="search">Search</label>
-      </div>
+
+
+  <div class="md-form input-group mb-3">
+    <input type="text" [(ngModel)]="search" class="form-control" id="search" mdbInput
+           aria-describedby="button-addon2">
+    <label for="search">Search</label>
+    <div class="input-group-append">
+      <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
+              mdbWavesEffect>Create User</button>
     </div>
   </div>
-  <table mdbTable #tableEl="mdbTable">
+  <table mdbTable >
     <thead>
     <tr>
       <th class="text-uppercase align-middle" mdbWavesEffect *ngFor="let head of headElements; let i = index" scope="col">{{head}}
@@ -66,6 +69,7 @@
         <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect>Delete</button></td>
     </tr>
     </tbody>
+    <h4 *ngIf="search === " class="md-form mb-3" style="text-align: center" mdbWavesEffect> There is no result content ..  </h4>
     <tfoot class="grey lighten-5 w-100">
     <tr>
       <td colspan="6">
