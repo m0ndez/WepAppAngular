@@ -69,15 +69,15 @@
         <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect>Delete</button></td>
     </tr>
     </tbody>
-    <h4 *ngIf="search === " class="md-form mb-3" style="text-align: center" mdbWavesEffect> There is no result content ..  </h4>
     <tfoot class="grey lighten-5 w-100">
     <tr>
       <td colspan="6">
-        <pagination-controls class="float-right" (pageChange)="p = $event" autoHide="true" responsive="true"
-                             screenReaderCurrentLabel="p[i]"></pagination-controls>
+        <pagination-controls class="float-right" (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
       </td>
     </tr>
     </tfoot>
   </table>
+
+  <h4  class="md-form mb-3" style="text-align: center" mdbWavesEffect> There is no result content ..  </h4>
 </div>
 

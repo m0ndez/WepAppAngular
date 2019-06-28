@@ -56,9 +56,9 @@ sub: Subscription
     }).then((result) => {
       console.log(result.value)
       if (result.value === true) {
-        this.service.deleteUser(id +1).subscribe((res) => {
+        this.service.deleteUser(id).subscribe((res) => {
           console.log(res)
-          if(res !== 200) {
+          if(res['resultCode'] !== 200) {
             Swal.fire({
               type: 'error',
               title: 'Oops...',
