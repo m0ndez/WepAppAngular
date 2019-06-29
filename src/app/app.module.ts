@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { WelcomepageComponent } from './welcomepage/welcomepage.component';
 import { AboutmeComponent } from './aboutme/aboutme.component';
@@ -24,6 +24,7 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {UsersService} from './users/shared/users.service';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { HomeComponent } from './users/home/home.component';
 
 @NgModule({
   declarations: [
@@ -50,14 +51,17 @@ import {NgxPaginationModule} from 'ngx-pagination';
     WavesModule,
     TableModule,
     InputsModule,
+    ModalModule,
     InputUtilitiesModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
-  providers: [UsersService],
+  providers: [],
   exports: [
     HeaderComponent
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: []
 })
 export class AppModule { }

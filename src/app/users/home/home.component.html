@@ -1,12 +1,7 @@
 <app-headeru></app-headeru>
 
-<button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal" data-target="#basicExample"
-        (click)="frame.show()" mdbWavesEffect>
-  Test alert sign in
-</button>
-
-<div mdbModal #frame="mdbModal" class="modal fade bottom modal-scrolling" id="frameModalTop" tabindex="-1"
-     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: true, ignoreBackdropClick: true}">
+<div  mdbModal #frame="mdbModal" class="modal fade bottom modal-scrolling" id="frameModalTop" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" *ngIf="chk === true" [config]="{backdrop: true, ignoreBackdropClick: false, show: true}">
   <div class="modal-dialog modal-frame modal-bottom modal-notify modal-warning" role="document">
     <!--Content-->
     <div class="modal-content">
@@ -30,8 +25,7 @@
 <div class="flex-center flex-column" style="height: 20vh">
 <h1> TABLE Here..Some  </h1>
 </div>
-<div class="container z-depth-2 animated fadeInRight" style="min-width: 20em">
-
+<div class="container z-depth-2 animated fadeInRight" style="min-width: 20em;">
 
   <div class="md-form input-group mb-3">
     <input type="text" [(ngModel)]="search" class="form-control" id="search" mdbInput
@@ -39,24 +33,24 @@
     <label for="search">Search</label>
     <div class="input-group-append">
       <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
-              mdbWavesEffect>Create User</button>
+              mdbWavesEffect (click)="openmodal()">Create User</button>
     </div>
   </div>
-  <table mdbTable >
+  <table mdbTable>
     <thead>
     <tr>
       <th class="text-uppercase align-middle" mdbWavesEffect *ngFor="let head of headElements; let i = index" scope="col">{{head}}
       </th>
       <th mdbWavesEffect scope="col" style="text-align: center; width: 20%;" *ngIf="button === false" class="animated fadeIn">
-        <button mdbBtn type="button" color="default" outline="true" size="sm" mdbWavesEffect (click)="openTools()">Tools</button>
+        <button mdbBtn type="button" color="default" outline="true" size="sm" mdbWavesEffect (click)="openTools($event)">Tools</button>
       </th>
       <th mdbWavesEffect scope="col" style="text-align: center; width: 20%;" *ngIf="button === true" class="animated fadeIn">
-        <button mdbBtn type="button" color="warning" outline="true" size="sm" mdbWavesEffect (click)="openTools()">Back</button>
+        <button mdbBtn type="button" color="warning" outline="true" size="sm" mdbWavesEffect (click)="openTools($event)">Back</button>
       </th>
     </tr>
     </thead>
     <tbody>
-    <tr class="animated fadeIn" *ngFor="let el of elements| filter:search| paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
+    <tr class="animated fadeIn" style="height: 10vh" *ngFor="let el of elements| filter:search| paginate: { itemsPerPage: 3, currentPage: p }; let i = index">
       <th
           scope="row">{{ i + 1}}</th>
       <td >{{el.firstname}}</td>
@@ -65,8 +59,8 @@
       <td >{{el.email}}</td>
       <td *ngIf="button === true" class="animated fadeIn"><button mdbBtn type="button" color="default" outline="true" size="sm" mdbWavesEffect>Edit</button>
         <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect (click)="pushDelete(el._id)">Delete</button></td>
-      <td *ngIf="button === false" class="animated fadeOut" disabled><button mdbBtn type="button" color="default" outline="true" size="sm" mdbWavesEffect>Edit</button>
-        <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect>Delete</button></td>
+      <!--  <td *ngIf="button === false" class="animated fadeOut" disabled><button mdbBtn type="button" color="default" outline="true" size="sm" mdbWavesEffect>Edit</button>
+        <button mdbBtn type="button" color="danger" outline="true" size="sm" mdbWavesEffect>Delete</button></td> -->
     </tr>
     </tbody>
     <tfoot class="grey lighten-5 w-100">
@@ -79,5 +73,6 @@
   </table>
 
   <h4  class="md-form mb-3" style="text-align: center" mdbWavesEffect> There is no result content ..  </h4>
+  <button mdbBtn color="primary" >Open modal</button>
 </div>
 

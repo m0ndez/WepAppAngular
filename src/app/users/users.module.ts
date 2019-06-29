@@ -3,14 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { HomeComponent } from './home/home.component';
-import {ButtonsModule, InputsModule, MDBBootstrapModule, NavbarModule, TableModule, WavesModule} from 'angular-bootstrap-md';
+import {ButtonsModule, InputsModule, MDBBootstrapModule, NavbarModule, TableModule, WavesModule, ModalModule} from 'angular-bootstrap-md';
 import { HeaderuComponent } from './headeru/headeru.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { CreateComponent } from './create/create.component';
+import { UsersService } from './shared/users.service';
 
 @NgModule({
-  declarations: [HomeComponent, HeaderuComponent],
+  declarations: [HomeComponent, HeaderuComponent, CreateComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -23,6 +25,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     WavesModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-  ]
+    ModalModule,
+    ButtonsModule,
+    ReactiveFormsModule
+  ],
+  entryComponents: [CreateComponent],
+  providers: [UsersService,CreateComponent]
 })
 export class UsersModule { }

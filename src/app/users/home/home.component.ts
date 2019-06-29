@@ -1,9 +1,10 @@
-import { MdbTableDirective} from 'angular-bootstrap-md';
+import { MdbTableDirective, MDBModalService, MDBModalRef, ModalOptions} from 'angular-bootstrap-md';
 import {Component, OnInit, ViewChild, ChangeDetectorRef, OnDestroy} from '@angular/core';
 import {UsersService} from '../shared/users.service';
 import {Users} from '../shared/users.model';
 import {Subscription} from 'rxjs';
 import Swal from 'sweetalert2';
+import { CreateComponent } from '../create/create.component';
 
 @Component({
   selector: 'app-home',
@@ -17,15 +18,49 @@ elements: Users[];
 previous: string;
 search;
 button = false;
+chk = false;
 headElements = ['No.', 'FirstName', 'LastName', 'PhoneNumber', 'E-mail'];
 sub: Subscription
-  constructor(private service: UsersService) { }
+modalRef: MDBModalRef
+//
+ModalOptions = {
+  backdrop: true,
+  keyboard: true,
+  focus: true,
+  show: false,
+  ignoreBackdropClick: false,
+  class: '',
+  containerClass: '',
+  animated: true,
+  data: {
+      heading: 'Modal heading',
+      content: { heading: 'Content heading', description: 'Content description'}
+  }
+}
+  constructor(private service: UsersService, private modalService: MDBModalService) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.loginChk()
+    }, 2000);
     this.getAll()
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
+  }
+
+  openmodal() {
+    this.modalRef = this.modalService.show(CreateComponent, { backdrop: true,
+      keyboard: true,
+      focus: true,
+      show: false,
+      ignoreBackdropClick: true,
+      class: 'modal-side modal-top-right',
+      containerClass: 'right',
+      animated: true,
+      data: { heading : 'Create user',
+              content: { heading: 'Insert data', description: 'Content ... ' } }
+    })
   }
 
   getAll() {
@@ -39,8 +74,12 @@ sub: Subscription
     })
   }
 
-  openTools() {
-  this.button = !this.button
+  openTools(event: any) {
+  //  this.button = !this.button
+    if(event) {
+      this.button = !this.button
+    }
+    console.log(event)
   }
 
   pushDelete(id) {
@@ -80,6 +119,13 @@ sub: Subscription
       }
     })
 
+  }
+
+  loginChk () {
+    if(localStorage.getItem('token')) {
+      this.chk = true
+      console.log(this.chk)
+    }
   }
 
   ngOnDestroy(): void {
