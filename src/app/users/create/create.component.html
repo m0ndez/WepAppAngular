@@ -1,5 +1,5 @@
-
-    <div class="modal-content" role="document">
+<form [formGroup]="createForm" (ngSubmit)="isCreate()">
+<div class="modal-content" role="document">
       <div class="modal-header text-center">
         <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onNoClick()">
@@ -9,41 +9,53 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <i class="fas fa-user prefix grey-text"></i>
-          <input type="text" id="orangeForm-firstname" class="form-control validate" [formControl]="firstname"
+          <input type="text" id="orangeForm-firstname" class="form-control" formControlName="firstname"
             mdbInput>
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Firstname</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-firstname">Firstname</label>
+          <mdb-error *ngIf="hasError('firstname', 'required') && (createForm.controls.firstname.dirty || createForm.controls.firstname.touched)"> Lastname is require</mdb-error>
+          <mdb-success *ngIf="createForm.controls.firstname.valid">Valid !</mdb-success>
         </div>
         
         <div class="md-form mb-5">
           <i class="fas fa-book prefix grey-text"></i>
-          <input type="text" id="orangeForm-lastname" class="form-control validate" [formControl]="firstname"
+          <input type="text" id="orangeForm-lastname" class="form-control" formControlName="lastname"
             mdbInput>
-          <label data-error="wrong" data-success="right" for="orangeForm-name">Lastname</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-lastname">Lastname</label>
+          <mdb-error *ngIf="hasError('lastname', 'required') && (createForm.controls.lastname.dirty || createForm.controls.lastname.touched)"> Lastname is require</mdb-error>
+          <mdb-success *ngIf="createForm.controls.lastname.valid">Valid !</mdb-success>
         </div>
         
         <div class="md-form mb-5">
           <i class="fas fa-phone prefix grey-text"></i>
-          <input type="text" id="orangeForm-phonenumber" class="form-control validate" [formControl]="firstname"
+          <input type="text" id="orangeForm-phonenumber" class="form-control" formControlName="phonenumber"
             mdbInput>
-          <label data-error="wrong" data-success="right" for="orangeForm-name">PhoneCall</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-phonenumber">PhoneCall</label>
+          <mdb-error *ngIf="hasError('phonenumber', 'pattern')">Invalid phone-number pattern</mdb-error>
+          <mdb-error *ngIf="hasError('phonenumber', 'required') && (createForm.controls.phonenumber.dirty || createForm.controls.phonenumber.touched)">Phone-number is require</mdb-error>
+          <mdb-success *ngIf="createForm.controls.phonenumber.valid" >Valid !</mdb-success>
         </div>
         
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="orangeForm-email" class="form-control validate" [formControl]="email"
+          <input type="email" id="orangeForm-email" class="form-control" formControlName="email" required
             mdbInput>
-          <label data-error="wrong" data-success="right" for="orangeForm-email">E-mail</label>
-        </div>
+          <label for="orangeForm-email">E-mail</label>
+          <mdb-error *ngIf="hasError('email', 'pattern')">Invalid E-mail pattern</mdb-error>
+          <mdb-error *ngIf="hasError('email', 'required') && (createForm.controls.email.dirty || createForm.controls.email.touched)">E-mail is required</mdb-error>
+          <mdb-success *ngIf="createForm.controls.email.valid">Valid !</mdb-success>
 
+        </div>
+        <!--
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="orangeForm-pass" class="form-control validate" [formControl]="password"
+          <input type="password" id="orangeForm-pass" class="form-control" formControlName="password"
             mdbInput>
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
         </div>
-
+ -->
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="deep-orange" class="waves-light" mdbWavesEffect>Sign up</button>
+        <button mdbBtn color="deep-orange" [disabled]="createForm.invalid" class="waves-light" mdbWavesEffect>Sign up</button>
       </div>
     </div>
+</form>

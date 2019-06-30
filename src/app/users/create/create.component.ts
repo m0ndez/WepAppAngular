@@ -11,19 +11,37 @@ export class CreateComponent implements OnInit {
   heading: string;
   content: any;
 
-firstname = new FormControl('', Validators.required);
-lastname = new FormControl('', Validators.required);
-phonenumber = new FormControl('', Validators.required);
-email = new FormControl('', Validators.email);
-password = new FormControl('', Validators.required);
+  createForm = this.fb.group({
+    firstname: ['', [Validators.required]],
+    lastname: ['', [Validators.required]],
+    phonenumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+    email: ['', [Validators.required, Validators.pattern('^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$')]],
+    /* password: [null, [Validators.required]]*/
+  });
 
-  constructor(public modalRef: MDBModalRef, private fb: FormBuilder) { }
-
+  constructor(public modalRef: MDBModalRef, private fb: FormBuilder) {
+  }
   ngOnInit() {
   }
 
-onNoClick() {
-  this.modalRef.hide()
-}
+  hasError(controlName: string, errorName: string){
+  return this.createForm.controls[controlName].hasError(errorName)
+  }
 
+  onNoClick() {
+    this.modalRef.hide()
+  }
+
+  isCreate() {
+    // console.log(this.createForm.value)
+    if(this.createForm.valid) {
+    const body = {
+      'firstname': this.createForm.value.firstname,
+      'lastname': this.createForm.value.lastname,
+      'phonenumber': this.createForm.value.phonenumber,
+      'email': this.createForm.value.email
+    }
+      console.log(body)
+    }
+  }
 }

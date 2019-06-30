@@ -55,7 +55,7 @@ ModalOptions = {
       focus: true,
       show: false,
       ignoreBackdropClick: true,
-      class: 'modal-side modal-top-right',
+      class: 'modal-center modal-top',
       containerClass: 'right',
       animated: true,
       data: { heading : 'Create user',

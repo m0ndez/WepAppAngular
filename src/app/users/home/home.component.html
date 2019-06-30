@@ -27,10 +27,10 @@
 </div>
 <div class="container z-depth-2 animated fadeInRight" style="min-width: 20em;">
 
-  <div class="md-form input-group mb-3">
+  <div class="md-form form-sm form-inline input-group mb-3">
     <input type="text" [(ngModel)]="search" class="form-control" id="search" mdbInput
            aria-describedby="button-addon2">
-    <label for="search">Search</label>
+    <label for="search"><i class="fas fa-search" aria-hidden="true"></i>&nbsp;Search</label>
     <div class="input-group-append">
       <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
               mdbWavesEffect (click)="openmodal()">Create User</button>
@@ -73,6 +73,5 @@
   </table>
 
   <h4  class="md-form mb-3" style="text-align: center" mdbWavesEffect> There is no result content ..  </h4>
-  <button mdbBtn color="primary" >Open modal</button>
 </div>
 
