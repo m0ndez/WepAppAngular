@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MDBModalRef } from 'angular-bootstrap-md';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import {UsersService} from '../shared/users.service';
 
 @Component({
   selector: 'app-create',
@@ -19,7 +20,7 @@ export class CreateComponent implements OnInit {
     /* password: [null, [Validators.required]]*/
   });
 
-  constructor(public modalRef: MDBModalRef, private fb: FormBuilder) {
+  constructor(public modalRef: MDBModalRef, private fb: FormBuilder, private service: UsersService) {
   }
   ngOnInit() {
   }
@@ -34,14 +35,15 @@ export class CreateComponent implements OnInit {
 
   isCreate() {
     // console.log(this.createForm.value)
-    if(this.createForm.valid) {
-    const body = {
-      'firstname': this.createForm.value.firstname,
-      'lastname': this.createForm.value.lastname,
-      'phonenumber': this.createForm.value.phonenumber,
-      'email': this.createForm.value.email
-    }
-      console.log(body)
+    if (this.createForm.valid) {
+      console.log(this.createForm.value)
+      this.service.createUser(this.createForm.value).subscribe((res) => {
+        console.log(res)
+      },(error) => {
+        console.log(error)
+      }, () => {
+        console.log('Completed')
+      })
     }
   }
 }

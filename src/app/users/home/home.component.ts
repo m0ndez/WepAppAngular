@@ -23,26 +23,17 @@ headElements = ['No.', 'FirstName', 'LastName', 'PhoneNumber', 'E-mail'];
 sub: Subscription
 modalRef: MDBModalRef
 //
-ModalOptions = {
-  backdrop: true,
-  keyboard: true,
-  focus: true,
-  show: false,
-  ignoreBackdropClick: false,
-  class: '',
-  containerClass: '',
-  animated: true,
-  data: {
-      heading: 'Modal heading',
-      content: { heading: 'Content heading', description: 'Content description'}
-  }
-}
+
   constructor(private service: UsersService, private modalService: MDBModalService) { }
 
   ngOnInit() {
     setTimeout(() => {
       this.loginChk()
     }, 2000);
+    this.service.getReflesh.subscribe(() => {
+      this.getAll()
+      console.log('pipe.tap')
+    })
     this.getAll()
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
