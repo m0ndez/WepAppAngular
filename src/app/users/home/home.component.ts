@@ -1,15 +1,18 @@
-import { MdbTableDirective, MDBModalService, MDBModalRef, ModalOptions} from 'angular-bootstrap-md';
-import {Component, OnInit, ViewChild, ChangeDetectorRef, OnDestroy} from '@angular/core';
+import {MDBModalRef, MDBModalService, MdbTableDirective} from 'angular-bootstrap-md';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {UsersService} from '../shared/users.service';
 import {Users} from '../shared/users.model';
-import {Subscription} from 'rxjs';
+import {interval, Observable, Subscription} from 'rxjs';
 import Swal from 'sweetalert2';
-import { CreateComponent } from '../create/create.component';
+import {CreateComponent} from '../create/create.component';
+import {map} from 'rxjs/operators';
+import {ViewComponent} from '../view/view.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit, OnDestroy {
 @ViewChild(MdbTableDirective) mdbTable: MdbTableDirective;
@@ -32,7 +35,7 @@ modalRef: MDBModalRef
     }, 2000);
     this.service.getReflesh.subscribe(() => {
       this.getAll()
-      console.log('pipe.tap')
+      console.log('Data Updated')
     })
     this.getAll()
     this.mdbTable.setDataSource(this.elements);
@@ -50,8 +53,28 @@ modalRef: MDBModalRef
       containerClass: 'right',
       animated: true,
       data: { heading : 'Create user',
-              content: { heading: 'Insert data', description: 'Content ... ' } }
+              content: { heading: 'Insert data', description: 'Content ... ' ,} }
     })
+  }
+
+  openViewmodal(_id, firstname, lastname, phonenumber, email) {
+  this.modalRef = this.modalService.show(ViewComponent, { backdrop: true,
+    keyboard: true,
+    focus: true,
+    show: false,
+    ignoreBackdropClick: true,
+    class: 'modal-center modal-top',
+    containerClass: 'right',
+    animated: true,
+    data: { heading : 'View',
+      content: { heading: 'View and edit', description: 'Content ... ',
+      id: _id,
+      firstname: firstname,
+      lastname: lastname,
+      phonenumber: phonenumber,
+      email: email} }
+  })
+    console.log(_id)
   }
 
   getAll() {
@@ -77,7 +100,7 @@ modalRef: MDBModalRef
   console.log(id)
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: 'Your account permanent delete',
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
@@ -100,7 +123,7 @@ modalRef: MDBModalRef
               'User has been deleted.',
               'success'
             )
-            this.getAll()
+            // this.getAll()
           }
         },(error) => {
           console.log(error)
@@ -109,7 +132,17 @@ modalRef: MDBModalRef
         })
       }
     })
+  }
 
+  pushView(id, firstname, lastname, phonenumber, email) {
+  const body = {
+  '_id' : id,
+  'firstname' : firstname,
+  'lastname' : lastname,
+  'phonenumber' : phonenumber,
+  'email' : email
+  }
+  console.log(body)
   }
 
   loginChk () {

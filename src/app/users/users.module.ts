@@ -19,10 +19,10 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CreateComponent } from './create/create.component';
 import { UsersService } from './shared/users.service';
-import {Operator} from 'rxjs';
+import { ViewComponent } from './view/view.component';
 
 @NgModule({
-  declarations: [HomeComponent, HeaderuComponent, CreateComponent],
+  declarations: [HomeComponent, HeaderuComponent, CreateComponent, ViewComponent],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -42,7 +42,7 @@ import {Operator} from 'rxjs';
     PopoverModule,
 
   ],
-  entryComponents: [CreateComponent],
+  entryComponents: [CreateComponent, ViewComponent],
   providers: [UsersService]
 })
 export class UsersModule { }

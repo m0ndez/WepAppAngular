@@ -8,7 +8,6 @@ import {tap} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UsersService {
-
   apiUrl = 'http://128.199.167.160:3000/api/v1/users';
   header = {'Content-type': 'application/json'};
   authHeader = {'Content-type': 'application/json', 'x-access-token': localStorage.getItem('token')};
@@ -16,6 +15,10 @@ export class UsersService {
   constructor(private http: HttpClient) {
   }
   _getReflesh = new Subject<void>()
+  _GetUpdate = new Subject<string>()
+  get getUpdate() {
+    return this._GetUpdate;
+  }
   get getReflesh() {
     return this._getReflesh;
   }
@@ -24,7 +27,11 @@ export class UsersService {
   }
 
   deleteUser(id) {
-    return this.http.delete(this.apiUrl + '/' + id, {headers: this.header})
+    return this.http.delete(this.apiUrl + '/' + id, {headers: this.header}).pipe(
+      tap(() => {
+        this._getReflesh.next()
+      })
+    )
   }
 
   createUser(createForm: Users) {

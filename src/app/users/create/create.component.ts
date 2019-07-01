@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MDBModalRef } from 'angular-bootstrap-md';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import {UsersService} from '../shared/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create',
@@ -38,7 +39,24 @@ export class CreateComponent implements OnInit {
     if (this.createForm.valid) {
       console.log(this.createForm.value)
       this.service.createUser(this.createForm.value).subscribe((res) => {
-        console.log(res)
+         console.log(res)
+        // console.log(res['resultCode'])
+         if (res['resultCode'] !== 200) {
+           // alert(res['error']['message'])
+           Swal.fire({
+             type: 'error',
+             title: 'Oops...',
+             text: res['error']['message'],
+             footer: 'ErrorCode :' + '' + res['resultCode']
+           })
+         } else {
+           Swal.fire(
+             'Success !',
+             'You created user',
+             'success'
+           )
+           this.modalRef.hide()
+         }
       },(error) => {
         console.log(error)
       }, () => {
