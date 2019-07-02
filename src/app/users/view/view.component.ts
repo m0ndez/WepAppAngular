@@ -10,33 +10,46 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 export class ViewComponent implements OnInit {
   // viewForm: FormGroup
-
-  viewForm = this.fb.group( {
-    firstname: [Validators.required],
-    lastname: [Validators.required],
-    phonenumber: [Validators.required],
-    email: [Validators.required]
-  })
   isDisable = true;
+  content: any;
+
 
   constructor(public modalRef: MDBModalRef, private fb: FormBuilder) { }
 
-  ngOnInit() {/*
-    this.viewForm = new FormGroup({
-      optionEdit: new FormControl({disabled: true, value: ''},[Validators.required]),
-      firstname: new FormControl({disabled: true, value: ''},[Validators.required]),
-      lastname: new FormControl({disabled: true, value: ''},[Validators.required]),
-      phonenumber: new FormControl({disabled: true, value: ''}, [Validators.required]),
-      email: new FormControl({disabled: true, value: ''}, [Validators.required])
-    });*/
+  viewForm = this.fb.group( {
+    firstname: [null,[Validators.required]],
+    lastname: [null,[Validators.required]],
+    phonenumber: [null,[Validators.required]],
+    email: [null, [Validators.required]]
+  })
+
+
+  ngOnInit() {
+    this.viewForm.disable()
   }
   /*
   get optionEdit() {
     return this.viewForm.get('optionEdit') as FormControl
   }
    */
+  editButton() {
+    this.isDisable = !this.isDisable
+  }
+
   toggleEdit() {
     this.isDisable = !this.isDisable
+    // console.log(this.modalRef.content['content']['firstname'])
+    console.log(this.viewForm.value.firstname)
+    if(this.isDisable === false) {
+      this.viewForm.enable()
+    }
+    if(this.isDisable === true) {
+      this.viewForm.disable()
+      if (this.viewForm.value) {
+        console.log(this.viewForm.value)
+
+      }
+    }
   }
 
   isEdit() {
