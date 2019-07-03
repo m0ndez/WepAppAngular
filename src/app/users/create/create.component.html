@@ -11,35 +11,47 @@
           <i class="fas fa-user prefix grey-text"></i>
           <input type="text" id="orangeForm-firstname" class="form-control" formControlName="firstname"
             mdbInput>
-          <label data-error="wrong" data-success="right" for="orangeForm-firstname">Firstname</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-firstname" aria-describedby="firstname-hind">Firstname</label>
+          <small *ngIf="createForm.controls.firstname.value" id="firstname-hind" class="form-text text-muted mb-4">
+            Use pattern A-Z only
+          </small>
           <mdb-error *ngIf="hasError('firstname', 'required') && (createForm.controls.firstname.dirty || createForm.controls.firstname.touched)"> Lastname is require</mdb-error>
-          <mdb-success *ngIf="createForm.controls.firstname.valid">Valid !</mdb-success>
+          <!-- <mdb-success *ngIf="createForm.controls.firstname.valid">Valid !</mdb-success> -->
         </div>
         
         <div class="md-form mb-5">
           <i class="fas fa-book prefix grey-text"></i>
           <input type="text" id="orangeForm-lastname" class="form-control" formControlName="lastname"
             mdbInput>
-          <label data-error="wrong" data-success="right" for="orangeForm-lastname">Lastname</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-lastname" aria-describedby="lastname-hind">Lastname</label>
+          <small *ngIf="createForm.controls.lastname.value" id="lastname-hind" class="form-text text-muted mb-4">
+            Use pattern A-Z only
+          </small>
           <mdb-error *ngIf="hasError('lastname', 'required') && (createForm.controls.lastname.dirty || createForm.controls.lastname.touched)"> Lastname is require</mdb-error>
-          <mdb-success *ngIf="createForm.controls.lastname.valid">Valid !</mdb-success>
+          <!-- <mdb-success *ngIf="createForm.controls.lastname.valid">Valid !</mdb-success> -->
         </div>
         
         <div class="md-form mb-5">
           <i class="fas fa-phone prefix grey-text"></i>
           <input type="text" id="orangeForm-phonenumber" class="form-control" formControlName="phonenumber"
             mdbInput>
-          <label data-error="wrong" data-success="right" for="orangeForm-phonenumber">PhoneCall</label>
+          <label data-error="wrong" data-success="right" for="orangeForm-phonenumber" aria-describedby="hind-phonenumber">PhoneCall</label>
+          <small *ngIf="createForm.controls.phonenumber.value" id="hind-phonenumber" class="text-muted form-text mb-4">
+            User only number format 0-9
+          </small>
           <mdb-error *ngIf="hasError('phonenumber', 'pattern')">Invalid phone-number pattern</mdb-error>
           <mdb-error *ngIf="hasError('phonenumber', 'required') && (createForm.controls.phonenumber.dirty || createForm.controls.phonenumber.touched)">Phone-number is require</mdb-error>
-          <mdb-success *ngIf="createForm.controls.phonenumber.valid" >Valid !</mdb-success>
+          <!-- <mdb-success *ngIf="createForm.controls.phonenumber.valid" >Valid !</mdb-success> -->
         </div>
         
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
           <input type="email" id="orangeForm-email" class="form-control" formControlName="email" required
             mdbInput>
-          <label for="orangeForm-email">E-mail</label>
+          <label for="orangeForm-email" aria-describedby="hind-email">E-mail</label>
+          <small id="hind-email" class="form-text form-text mb-4">
+            Example@email.com
+          </small>
           <mdb-error *ngIf="hasError('email', 'pattern')">Invalid E-mail pattern</mdb-error>
           <mdb-error *ngIf="hasError('email', 'required') && (createForm.controls.email.dirty || createForm.controls.email.touched)">E-mail is required</mdb-error>
           <mdb-success *ngIf="createForm.controls.email.valid">Valid !</mdb-success>

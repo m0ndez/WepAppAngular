@@ -1,6 +1,7 @@
 import {Component, Directive, OnInit} from '@angular/core';
 import {MDBModalRef} from 'angular-bootstrap-md';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-view',
@@ -12,20 +13,26 @@ export class ViewComponent implements OnInit {
   // viewForm: FormGroup
   isDisable = true;
   content: any;
-
-
-  constructor(public modalRef: MDBModalRef, private fb: FormBuilder) { }
+  data: {
+    firstname: any,
+    lastname: any,
+    phonenumber: number,
+    email: any
+  };
 
   viewForm = this.fb.group( {
-    firstname: [null,[Validators.required]],
-    lastname: [null,[Validators.required]],
-    phonenumber: [null,[Validators.required]],
-    email: [null, [Validators.required]]
+    firstname: ['',[Validators.required]],
+    lastname: ['',[Validators.required]],
+    phonenumber: ['',[Validators.required]],
+    email: ['', [Validators.required]]
   })
-
-
+  constructor(public modalRef: MDBModalRef, private fb: FormBuilder) { }
   ngOnInit() {
     this.viewForm.disable()
+  }
+
+  hasError(controlName: string, errorName: string) {
+    return this.viewForm.controls[controlName].hasError(errorName)
   }
   /*
   get optionEdit() {
@@ -36,17 +43,24 @@ export class ViewComponent implements OnInit {
     this.isDisable = !this.isDisable
   }
 
-  toggleEdit() {
+  toggleEdit(firstname, lastname, phonenumber, email) {
     this.isDisable = !this.isDisable
     // console.log(this.modalRef.content['content']['firstname'])
-    console.log(this.viewForm.value.firstname)
+    // console.log(this.viewForm.value)
     if(this.isDisable === false) {
       this.viewForm.enable()
     }
     if(this.isDisable === true) {
       this.viewForm.disable()
       if (this.viewForm.value) {
+        /*this.data = {
+          firstname: firstname,
+          lastname: lastname,
+          phonenumber: phonenumber,
+          email: email
+        } */
         console.log(this.viewForm.value)
+        // console.log(this.data)
 
       }
     }

@@ -18,31 +18,40 @@
         <div class="col">
           <!-- First name -->
           <div class="md-form">
-            <input type="text" id="materialRegisterFormFirstName" class="form-control" formControlName="firstname" mdbInput  value="{{content.firstname}}">
-            <label for="materialRegisterFormFirstName">First name</label>
+            <input type="text" id="materialRegisterFormFirstName" class="form-control" formControlName="firstname" mdbInput  aria-describedby="old-firstname">
+            <label for="materialRegisterFormFirstName">{{content['firstname']}}</label>
+            <small id="old-firstname" class="form-text text-muted mb-4">
+               Use pattern A-Z only
+            </small>
           </div>
         </div>
         <div class="col">
           <!-- Last name -->
           <div class="md-form">
-            <input type="email" id="materialRegisterFormLastName" class="form-control" formControlName="lastname" mdbInput value=" {{content.lastname}}">
-            <label for="materialRegisterFormLastName">Last name</label>
+            <input type="email" id="materialRegisterFormLastName" class="form-control" formControlName="lastname" mdbInput aria-describedby="old-lastname">
+            <label for="materialRegisterFormLastName">{{content['lastname']}}</label>
+            <small id="old-lastname" class="form-text text-muted mb-4">
+              Use pattern A-Z only
+            </small>
           </div>
         </div>
       </div>
         <!-- PhoneNumber -->
         <div class="md-form">
           <input type="text" id="materialRegisterFormPhone" class="form-control" formControlName="phonenumber" aria-describedby="materialRegisterFormPhoneHelpBlock"
-                 mdbInput value="{{content.phonenumber}}">
-          <label for="materialRegisterFormPhone">Phone number</label>
+                 mdbInput>
+          <label for="materialRegisterFormPhone">{{content['phonenumber']}}</label>
           <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-            Optional - for two step authentication
+            User only number format example 0-9
           </small>
         </div>
         <!-- E-mail -->
         <div class="md-form mt-0">
-          <input type="email" id="materialRegisterFormEmail" class="form-control" formControlName="email" mdbInput value="{{content.email}}">
-          <label for="materialRegisterFormEmail">E-mail</label>
+          <input type="email" id="materialRegisterFormEmail" class="form-control" formControlName="email" mdbInput aria-describedby="old-email">
+          <label for="materialRegisterFormEmail">{{content['email']}}</label>
+          <small id="old-email" class="form-text text-muted mb-4">
+            Use email pattern only
+          </small>
         </div>
       </form>
     </h6>
@@ -51,7 +60,7 @@
   <mdb-card-footer>
 
     <a *ngIf="isDisable === true" mdbBtn color="deep-orange" mdbWavesEffect (click)="toggleEdit()">Edit</a>
-    <a *ngIf="isDisable === false" mdbBtn color="primary" mdbWavesEffect (click)="toggleEdit() || editButton()">Submit</a>
+    <a *ngIf="isDisable === false" mdbBtn color="primary" mdbWavesEffect (click)="toggleEdit(content.firstname, content.lastname, content.phonenumber, content.email) || editButton()">Submit</a>
     <a *ngIf="isDisable === false" mdbBtn color="light" class="text-black-50" mdbWavesEffect (click)="toggleEdit()">back</a>
   </mdb-card-footer>
 </mdb-card>
