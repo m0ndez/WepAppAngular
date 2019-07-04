@@ -33,6 +33,20 @@ export class UsersService {
       })
     )
   }
+  putUpdateUser(id, createForm: Users) {
+    const body = {
+      'firstname': createForm.firstname,
+      'lastname': createForm.lastname,
+      'phonenumber': createForm.phonenumber,
+      'email': createForm.email
+    }
+    // console.log(id , body)
+    return this.http.put<Users>(this.apiUrl + '/' + id , body, {headers: this.header}).pipe(
+      tap(() => {
+        this._getReflesh.next()
+      })
+    )
+  }
 
   createUser(createForm: Users) {
     const body = {

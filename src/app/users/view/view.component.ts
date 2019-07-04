@@ -2,6 +2,7 @@ import {Component, Directive, OnInit} from '@angular/core';
 import {MDBModalRef} from 'angular-bootstrap-md';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
+import {UsersService} from '../shared/users.service';
 
 @Component({
   selector: 'app-view',
@@ -26,7 +27,8 @@ export class ViewComponent implements OnInit {
     phonenumber: ['',[Validators.required]],
     email: ['', [Validators.required]]
   })
-  constructor(public modalRef: MDBModalRef, private fb: FormBuilder) { }
+  constructor(public modalRef: MDBModalRef, private fb: FormBuilder,
+              private service: UsersService) { }
   ngOnInit() {
     this.viewForm.disable()
   }
@@ -41,28 +43,35 @@ export class ViewComponent implements OnInit {
    */
   editButton() {
     this.isDisable = !this.isDisable
+    this.toggleEdit()
   }
 
-  toggleEdit(firstname, lastname, phonenumber, email) {
-    this.isDisable = !this.isDisable
+  toggleEdit() {
     // console.log(this.modalRef.content['content']['firstname'])
     // console.log(this.viewForm.value)
     if(this.isDisable === false) {
       this.viewForm.enable()
     }
     if(this.isDisable === true) {
-      this.viewForm.disable()
-      if (this.viewForm.value) {
+      if (this.viewForm.valid) {
         /*this.data = {
           firstname: firstname,
           lastname: lastname,
           phonenumber: phonenumber,
           email: email
         } */
-        console.log(this.viewForm.value)
+        console.log(this.viewForm.value, 'edit')
+        this.service.putUpdateUser(this.content.id, this.viewForm.value).subscribe((res) => {
+          console.log(res)
+        },(error) => {
+          console.log(error)
+        }, () => {
+          console.log('Complete')
+          this.viewForm.reset()
+        })
         // console.log(this.data)
-
       }
+      this.viewForm.disable()
     }
   }
 

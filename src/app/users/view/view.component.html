@@ -58,9 +58,8 @@
     </mdb-card-text>
   </mdb-card-body>
   <mdb-card-footer>
-
-    <a *ngIf="isDisable === true" mdbBtn color="deep-orange" mdbWavesEffect (click)="toggleEdit()">Edit</a>
-    <a *ngIf="isDisable === false" mdbBtn color="primary" mdbWavesEffect (click)="toggleEdit(content.firstname, content.lastname, content.phonenumber, content.email) || editButton()">Submit</a>
-    <a *ngIf="isDisable === false" mdbBtn color="light" class="text-black-50" mdbWavesEffect (click)="toggleEdit()">back</a>
+    <a *ngIf="isDisable === true" mdbBtn color="deep-orange" mdbWavesEffect (click)="editButton()">Edit</a>
+    <button [disabled]="viewForm.invalid" *ngIf="isDisable === false" mdbBtn color="primary" mdbWavesEffect (click)="editButton()">Submit</button>
+    <a *ngIf="isDisable === false" mdbBtn color="light"  class="text-black-50" mdbWavesEffect (click)="editButton()">back</a>
   </mdb-card-footer>
 </mdb-card>
