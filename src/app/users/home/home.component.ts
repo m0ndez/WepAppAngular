@@ -30,15 +30,16 @@ modalRef: MDBModalRef
   constructor(private service: UsersService, private modalService: MDBModalService) { }
 
   ngOnInit() {
-  /*
-    setTimeout(() => {
-      this.loginChk()
-    }, 2000);  */
+
+  this.getAll()
     this.service.getReflesh.subscribe(() => {
       this.getAll()
       console.log('Data Updated')
+      /*
+  setTimeout(() => {
+    this.loginChk()
+  }, 2000);  */
     })
-    this.getAll()
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
