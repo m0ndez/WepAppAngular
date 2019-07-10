@@ -72,6 +72,7 @@ export class ViewComponent implements OnInit {
         // console.log(this.data)
       }
       this.viewForm.disable()
+      this.modalRef.hide()
     }
   }
 

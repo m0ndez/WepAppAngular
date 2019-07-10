@@ -7,7 +7,7 @@ import {AboutmeComponent} from './aboutme/aboutme.component';
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: WelcomepageComponent},
-  {path: 'about', component: AboutmeComponent},
+   {path: 'about', component: AboutmeComponent},
   {path: 'user', loadChildren: './users/users.module#UsersModule'},
   {path: '**', component: PagenotfoundComponent}
 

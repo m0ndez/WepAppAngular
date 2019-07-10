@@ -30,8 +30,7 @@ modalRef: MDBModalRef
   constructor(private service: UsersService, private modalService: MDBModalService) { }
 
   ngOnInit() {
-
-  this.getAll()
+    this.getAll()
     this.service.getReflesh.subscribe(() => {
       this.getAll()
       console.log('Data Updated')
@@ -77,6 +76,7 @@ modalRef: MDBModalRef
       email: email} }
   })
     console.log(_id)
+    console.log(this.modalRef.hide);
   }
 
   getAll() {
