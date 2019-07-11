@@ -1,20 +1,23 @@
-<app-header></app-header>
+
 <p style="padding-top: 7vh; margin-left: 10%">
-  dash works!
+  Today highlight: &nbsp;{{totalResults}}
 </p>
 
-<blockquote class="blockquote bq-success">
+<blockquote class="blockquote bq-success" *ngFor="let news of articles">
 <div class="border rounded mb-0 z-depth-1">
-<div class="media" style="margin: 20px;"><a href="">
-  <img class="d-flex align-self-start mr-3 rounded mb-0 z-depth-2" src="https://mdbootstrap.com/img/Photos/Others/placeholder6.jpg" alt="Generic placeholder image" mdbWavesEffect></a>
+<div class="media" style="margin: 20px;"><a href="{{news.url}}">
+  <figure class="figure">
+    <img *ngIf="news.urlToImage === null" class="d-flex img-fluid align-self-start mr-3 rounded mb-0 z-depth-2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png" [alt]="news.title" width="300px" mdbWavesEffect>
+  <img *ngIf="news.urlToImage" class="d-flex img-fluid align-self-start mr-3 rounded mb-0 z-depth-2" [src]="news.urlToImage" [alt]="news.title" width="300px" mdbWavesEffect>
+    <figcaption class="figure-caption font-italic"><br> ที่มา: &nbsp;{{news.source?.name | uppercase}}</figcaption>
+  </figure></a>
   <div class="media-body">
-    <h5 class="mt-0 font-weight-bold">News title</h5>
-    <p class="">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-      odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
-      Donec lacinia congue felis in faucibus.</p>
-    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus
-      et magnis dis parturient montes, nascetur ridiculus mus.</p>
-    <button class="float-right"> test </button>
+    <h5 class="mt-0 font-weight-bold">{{news.title}}</h5>
+    <p *ngIf="news.description === null " class="font-italic">More..</p>
+    <p *ngIf="news.description">{{news.description}}</p>
+    <hr><a [href]="news.url">
+    <button type="button" mdbBtn color="light" mdbWavesEffect class="float-md-right"> Read.. </button></a>
+    <p class="text-muted">วันที่:{{news.publishedAt | date:"mediumDate"}}</p>
   </div>
 </div>
 </div>
