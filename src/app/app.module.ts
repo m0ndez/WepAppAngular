@@ -25,6 +25,7 @@ import {UsersService} from './users/shared/users.service';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { HomeComponent } from './users/home/home.component';
+import { DashComponent } from './dash/dash.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HomeComponent } from './users/home/home.component';
     PagenotfoundComponent,
     WelcomepageComponent,
     AboutmeComponent,
-    HeaderComponent
+    HeaderComponent,
+    DashComponent
   ],
   imports: [
     BrowserModule,

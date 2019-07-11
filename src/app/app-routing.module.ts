@@ -3,10 +3,12 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {AboutmeComponent} from './aboutme/aboutme.component';
+import {DashComponent} from './dash/dash.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: WelcomepageComponent},
+  {path: 'dash', component: DashComponent},
    {path: 'about', component: AboutmeComponent},
   {path: 'user', loadChildren: './users/users.module#UsersModule'},
   {path: '**', component: PagenotfoundComponent}
