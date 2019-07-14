@@ -28,6 +28,7 @@ import { HomeComponent } from './users/home/home.component';
 import { DashComponent } from './dash/dash.component';
 import { ContactComponent } from './contact/contact.component';
 import {AgmCoreModule} from '@agm/core';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {AgmCoreModule} from '@agm/core';
     AboutmeComponent,
     HeaderComponent,
     DashComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

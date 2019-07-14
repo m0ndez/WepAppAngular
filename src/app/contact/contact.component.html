@@ -1,3 +1,36 @@
-<p>
-  contact works!
-</p>
+<div style="padding-top: 8vh"></div>
+<h4 class="display-4 container flex-center flex-column">{{title}}
+<p></p>
+</h4>
+<hr class="container">
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<div class="container flex-center col col-lg">
+  <mdb-card class="rounded z-depth-2">
+    <!--Card image-->
+    <agm-map [latitude]="lat" [longitude]="lng">
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+    <!--Card content-->
+    <mdb-card-body>
+
+      <!--Title-->
+      <mdb-card-title>
+        <h4>Minburi</h4>
+      </mdb-card-title>
+
+      <!--Text-->
+      <mdb-card-text>
+        Address from google map
+      </mdb-card-text>
+
+      <a href="#" mdbBtn color="primary" mdbWavesEffect>some</a>
+    </mdb-card-body>
+  </mdb-card>
+  <!--
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map> -->
+</div>
+<br>
+<hr>

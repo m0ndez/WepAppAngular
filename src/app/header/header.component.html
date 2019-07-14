@@ -1,5 +1,5 @@
-
-<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark indigo fixed-top lighten-1" [containerInside]="false"  >
+<div class="z-depth-3">
+<mdb-navbar SideClass="navbar fixed-top navbar-expand-lg navbar-dark indigo lighten-1 scrolling-navbar" [containerInside]="false">
   <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/']"> Chattcoding : // Dashboard</a>
     </mdb-navbar-brand>
   <!-- Collapsible content -->
@@ -42,11 +42,12 @@
           <img src="https://avatars0.githubusercontent.com/u/49247689?v=4" alt="Profile" class="img-fluid rounded-circle z-depth-0" style="width: 30px"></a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
           <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/signin']">Log in</a>
           <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
         </div>
       </li>
     </ul>
   </links>
   <!-- Collapsible content -->
-
 </mdb-navbar>
+</div>

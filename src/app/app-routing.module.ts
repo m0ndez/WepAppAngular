@@ -5,12 +5,14 @@ import {WelcomepageComponent} from './welcomepage/welcomepage.component';
 import {AboutmeComponent} from './aboutme/aboutme.component';
 import {DashComponent} from './dash/dash.component';
 import {ContactComponent} from './contact/contact.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: WelcomepageComponent},
   {path: 'dash', component: DashComponent},
    {path: 'about', component: AboutmeComponent},
+  {path: 'signin', component: LoginComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'user', loadChildren: './users/users.module#UsersModule'},
   {path: '**', component: PagenotfoundComponent}
