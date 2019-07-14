@@ -27,6 +27,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { HomeComponent } from './users/home/home.component';
 import { DashComponent } from './dash/dash.component';
 import { ContactComponent } from './contact/contact.component';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,10 @@ import { ContactComponent } from './contact/contact.component';
     InputUtilitiesModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey : 'AIzaSyDA1m59Syl5QfHowRNkpSiuNkvaZv1xBBg'
+    })
   ],
   providers: [],
   exports: [
