@@ -7,9 +7,13 @@ import News = namespace.News;
   providedIn: 'root'
 })
 export class NewsService {
-  newsApiTH = 'https://newsapi.org/v2/top-headlines?country=th&apiKey=a0fb137bf22e4b92a71a78cafe6e6ede'
+  newsApiTH = 'https://newsapi.org/v2/top-headlines?country=th&apiKey=a0fb137bf22e4b92a71a78cafe6e6ede';
+  newsApiSci = 'https://newsapi.org/v2/top-headlines?country=th&category=science&apiKey=a0fb137bf22e4b92a71a78cafe6e6ede'
   constructor(private http: HttpClient) { }
   getNewsTH(): Observable<News> {
     return this.http.get<News>(this.newsApiTH)
+  }
+  getNewsSCI(): Observable<News> {
+    return this.http.get<News>(this.newsApiSci)
   }
 }

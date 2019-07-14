@@ -1,7 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-header></app-header>
-<router-outlet></router-outlet>
 
+<app-header></app-header>
+<div style="padding-top: 8vh">
+<router-outlet></router-outlet>
+</div>
 <!-- Footer -->
 <footer class="page-footer font-small  mdb-color lighten-3 pt-4">
 
@@ -37,7 +39,7 @@
             <a [routerLink]="['/about']">About me</a>
           </li>
           <li>
-            <a href="#!">Contact</a>
+            <a [routerLink]="['/contact']">Contact</a>
           </li>
           <li>
             <a href="#!">Home</a>

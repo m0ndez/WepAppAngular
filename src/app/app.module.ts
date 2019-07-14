@@ -18,7 +18,7 @@ import {
   ModalModule,
   TooltipModule,
   PopoverModule,
-  WavesModule, TableModule, InputsModule, InputUtilitiesModule
+  WavesModule, TableModule, InputsModule, InputUtilitiesModule, CarouselModule
 } from 'angular-bootstrap-md';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {UsersService} from './users/shared/users.service';
@@ -26,6 +26,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { HomeComponent } from './users/home/home.component';
 import { DashComponent } from './dash/dash.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DashComponent } from './dash/dash.component';
     WelcomepageComponent,
     AboutmeComponent,
     HeaderComponent,
-    DashComponent
+    DashComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import { DashComponent } from './dash/dash.component';
     TableModule,
     InputsModule,
     ModalModule,
+    CarouselModule,
     InputUtilitiesModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,

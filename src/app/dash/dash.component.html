@@ -1,11 +1,35 @@
 
-<p style="padding-top: 7vh; margin-left: 10%">
+<p class="border">
   Today highlight: &nbsp;{{totalResults}}
 </p>
-
-<blockquote class="blockquote bq-success" *ngFor="let news of articles">
+<div *ngIf="isLoading === false" class="container animated fadeIn">
+<div class="d-flex justify-content-center">
+  <div class="spinner-grow" style="width: 8rem; height: 8rem;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <br><br>
+</div>
+</div>
+<div class="container" *ngIf="isLoading === true">
+<mdb-carousel class="carousel slide carousel-fade animated fadeIn z-depth-2"  [animation]="'fade'">
+  <mdb-carousel-item *ngFor="let news of articles2">
+    <div class="view w-100">
+      <img class="d-block w-100" [src]="news.urlToImage" [alt]="news.title">
+      <img *ngIf="news.urlToImage === null" class="d-block w-100" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png" [alt]="news.title">
+      <a [href]="news.url"><div class="mask rgba-black-light waves-light" mdbWavesEffect></div></a>
+    </div>
+    <div class="carousel-caption">
+      <h3 class="h3-responsive">{{news.title}}</h3>
+      <p>more .. </p>
+    </div>
+  </mdb-carousel-item>
+</mdb-carousel>
+<br>
+<hr>
+<pagination-controls class="" (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
+<blockquote class="blockquote bq-success wow fadeIn" data-wow-dalay="0.6s" *ngFor="let news of articles | paginate: { itemsPerPage: 5, currentPage: p}">
 <div class="border rounded mb-0 z-depth-1">
-<div class="media" style="margin: 20px;"><a href="{{news.url}}">
+<div class="media" style="margin: 20px;"><a [href]="news.url">
   <figure class="figure">
     <img *ngIf="news.urlToImage === null" class="d-flex img-fluid align-self-start mr-3 rounded mb-0 z-depth-2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1280px-No_image_3x4.svg.png" [alt]="news.title" width="300px" mdbWavesEffect>
   <img *ngIf="news.urlToImage" class="d-flex img-fluid align-self-start mr-3 rounded mb-0 z-depth-2" [src]="news.urlToImage" [alt]="news.title" width="300px" mdbWavesEffect>
@@ -22,3 +46,5 @@
 </div>
 </div>
 </blockquote>
+<pagination-controls (pageChange)="p = $event" autoHide="true" responsive="true"></pagination-controls>
+</div>
