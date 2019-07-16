@@ -29,6 +29,9 @@ import { DashComponent } from './dash/dash.component';
 import { ContactComponent } from './contact/contact.component';
 import {AgmCoreModule} from '@agm/core';
 import { LoginComponent } from './login/login.component';
+import {RouterModule} from '@angular/router';
+import { CallbackComponent } from './callback/callback.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     DashComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    CallbackComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

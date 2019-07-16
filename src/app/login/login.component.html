@@ -1,7 +1,7 @@
 <div class="bg-image animated fadeInDown">
 <!-- Default form subscription -->
 <div class="container flex-center" style="width: 100vw; height: 100vh">
-<form class="text-center z-depth-3 border rounded border-light p-5" style="background-color: whitesmoke;width: 25vw">
+<form *ngIf="!isLogin" (ngSubmit)="login()" [formGroup]="loginForm" class="text-center z-depth-3 border rounded border-light p-5" style="background-color: whitesmoke;width: 25vw">
   <button type="button" class="close float-md-right" data-dismiss="modal" aria-label="Close" [routerLink]="['/']">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -15,17 +15,16 @@
   </p>
   <br>
   <!-- Email -->
-  <input type="email" id="defaultSubscriptionFormEmail" class="form-control mb-4" placeholder="E-mail" mdbInput>
+  <input type="email" formControlName="email" id="defaultSubscriptionFormEmail" class="form-control mb-4" placeholder="E-mail" mdbInput>
 
   <!-- Name -->
-  <input type="password" id="defaultSubscriptionFormPassword" class="form-control mb-4" placeholder="password" mdbInput>
+  <input type="password" formControlName="password" id="defaultSubscriptionFormPassword" class="form-control mb-4" placeholder="password" mdbInput>
 
   <!-- Sign in button -->
   <button mdbBtn color="info" block="true" type="submit">Sign in</button>
-
-
 </form>
 </div>
 <br>
 <!-- Default form subscription -->
 </div>
+

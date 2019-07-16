@@ -153,6 +153,12 @@ modalRef: MDBModalRef
       console.log(this.chk)
     }
   }
+  // Test Funtion
+  eventchk() {
+  if (confirm('some')) {
+    console.log('confirm')
+    } else { console.log('Cancel')}
+}
 
   ngOnDestroy(): void {
   this.sub.unsubscribe()
