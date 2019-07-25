@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(3)]]
   })
   isLogin = false;
+  isLoading = false;
   profile: any;
   constructor(private fb: FormBuilder, private auth: AuthService) {
     if (this.auth.isLogin()) {
@@ -23,12 +24,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 login() {
+  this.isLoading = true;
     // console.log(this.loginForm.value)
   this.auth.login(this.loginForm.value).subscribe(
     (token) => {
       if (token) {
-        this.isLogin = true;
         alert('Login Success');
+        this.isLoading = false;
         localStorage.setItem('token', JSON.stringify(token))
         this.auth.getProfile().subscribe(
           (profile) => {
@@ -38,6 +40,11 @@ login() {
           }
         )
       }
+    }, (error) => {
+      alert(error['error']['error_description'])
+      this.isLoading = false
+    }, () => {
+      window.location.reload()
     }
   )
 }

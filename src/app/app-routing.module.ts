@@ -17,9 +17,9 @@ const routes: Routes = [
    {path: 'about', component: AboutmeComponent},
   {path: 'signin', component: LoginComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'user', loadChildren: './users/users.module#UsersModule'},
+  {path: 'user', loadChildren: './users/users.module#UsersModule', canActivate: [AuthGuard]},
   {path: 'callback', component: CallbackComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], canLoad: [AuthGuard]},
   {path: '**', component: PagenotfoundComponent}
 
 

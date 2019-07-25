@@ -22,7 +22,7 @@ export class DashComponent implements OnInit, OnDestroy{
     this.getNewsSci()
   }
   getNewsSci() {
-    this.sub = this.newsservice.getNewsSCI().subscribe((res) => {
+    this.sub = this.newsservice.getNewsSCI().subscribe(res => {
      // console.log(res)
       this.articles2 = res['articles']
      // console.log(this.articles2)
