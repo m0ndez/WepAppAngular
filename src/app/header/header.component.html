@@ -40,16 +40,16 @@
       <li class="nav-item avatar dropdown" dropdown>
 
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          <img *ngIf="isLogin" [src]="profile?.picture" alt="Profile" class="img-fluid rounded-circle z-depth-0" style="width: 30px"></a>
+          <img *ngIf="profile" [src]="profile?.picture" alt="Profile" class="img-fluid rounded-circle z-depth-0" style="width: 30px"></a>
 
         <!--
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           <img *ngIf="!isLogin" src="https://avatars0.githubusercontent.com/u/49247689?v=4" alt="Profile" class="img-fluid rounded-circle z-depth-0" style="width: 30px"></a>
          -->
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-          <a *ngIf="isLogin" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/profile']">Hello:{{profile?.nickname}} &nbsp;</a>
-          <a *ngIf="!isLogin" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/signin']">Log in</a>
-          <a *ngIf="isLogin" class="dropdown-item waves-light" mdbWavesEffect (click)="logOut()">Log out</a>
+          <a *ngIf="profile" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/profile']">Hello:{{profile?.nickname}} &nbsp;</a>
+          <a *ngIf="!profile" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/signin']">Log in</a>
+          <a *ngIf="profile" class="dropdown-item waves-light" mdbWavesEffect (click)="logOut()">Log out</a>
         </div>
       </li>
     </ul>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +16,16 @@ export class LoginComponent implements OnInit {
   isLogin = false;
   isLoading = false;
   profile: any;
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
     if (this.auth.isLogin()) {
       this.isLogin = true;
       this.profile = JSON.parse(localStorage.getItem('profile'))
     }
   }
   ngOnInit() {
+  this.loginChecked()
   }
+
 login() {
   this.isLoading = true;
     // console.log(this.loginForm.value)
@@ -44,8 +47,13 @@ login() {
       alert(error['error']['error_description'])
       this.isLoading = false
     }, () => {
-      window.location.reload()
+      this.router.navigate(['/user'])
     }
   )
+}
+loginChecked() {
+    if(localStorage.getItem('profile')){
+      this.router.navigate([''])
+    }
 }
 }

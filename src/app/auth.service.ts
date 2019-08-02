@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import createAuth0Client from '@auth0/auth0-spa-js';
 import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
-import {BehaviorSubject, Observable, pipe} from 'rxjs';
+import {BehaviorSubject, Observable, pipe, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 
@@ -18,6 +18,15 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
+  _getReflesh = new Subject<void>()
+  _GetUpdate = new Subject<string>()
+  get getUpdate() {
+    return this._GetUpdate;
+  }
+  get getReflesh() {
+    return this._getReflesh;
+  }
+
   login(loginForm: any): Observable<any> {
     const myheader = {'Content-Type': 'application/json'};
     const body = {
@@ -28,7 +37,7 @@ export class AuthService {
       'scope': 'openid',
       'client_id': 'iaTVzhQoG8Rr3elEoD3Zx0N52I3O0fbM'
     };
-    return this.http.post<any>(this.loginUrl, body, {headers: myheader});
+    return this.http.post<any>(this.loginUrl, body, {headers: myheader}).pipe(tap(() => {this._getReflesh.next()}));
   }
 
   getProfile(): Observable<any> {
@@ -36,7 +45,7 @@ export class AuthService {
     const myheader = {
       'Authorization': 'Bearer ' + token.access_token
     };
-    return this.http.get<any>(this.profileUrl, {headers: myheader});
+    return this.http.get<any>(this.profileUrl, {headers: myheader}).pipe(tap(() => {this._getReflesh.next()}));
   }
 
   isLogin(): boolean {

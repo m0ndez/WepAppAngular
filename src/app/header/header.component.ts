@@ -11,13 +11,11 @@ import {UsersService} from '../users/shared/users.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isLogin: boolean
   profile: any = JSON.parse(localStorage.getItem('profile'))
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.isLogin = this.auth.isLogin()
- }
+  }
  logOut() {
     this.auth.isLogout()
    this.router.navigate(['/home'])
