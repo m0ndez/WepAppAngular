@@ -17,7 +17,6 @@ import {ViewComponent} from '../view/view.component';
 export class HomeComponent implements OnInit, OnDestroy {
 @ViewChild(MdbTableDirective) mdbTable: MdbTableDirective;
   p: number = 1;
-elements: Users[];
 previous: string;
 search;
 button = false;
@@ -25,9 +24,11 @@ chk = false;
 headElements = ['No.', 'FirstName', 'LastName', 'PhoneNumber', 'E-mail'];
 sub: Subscription
 modalRef: MDBModalRef
+elements: Users[]
 //
 
-  constructor(private service: UsersService, private modalService: MDBModalService) { }
+  constructor(private service: UsersService, private modalService: MDBModalService) { 
+  }
 
   ngOnInit() {
     this.service.getReflesh.subscribe(() => {
@@ -38,10 +39,20 @@ modalRef: MDBModalRef
     this.loginChk()
   }, 2000);  */
     })
-    this.getAll()
     this.mdbTable.setDataSource(this.elements);
     this.elements = this.mdbTable.getDataSource();
     this.previous = this.mdbTable.getDataSource();
+  }
+  
+  getAll() {
+    this.sub = this.service.getAll().subscribe((res) => {
+      this.elements = res['data']
+      // console.log(this.elements, `Data Elemants `)
+    }, (error) => {
+      console.log(error)
+    }, () => {
+      // sconsole.log('Completely load data')
+    })
   }
 
   openmodal() {
@@ -78,18 +89,6 @@ modalRef: MDBModalRef
     console.log(_id)
     console.log(this.modalRef.hide);
   }
-
-  getAll() {
-    this.sub = this.service.getAll().subscribe((res) => {
-      this.elements = res['data']
-      console.log(this.elements)
-    }, (error) => {
-      console.log(error)
-    }, () => {
-      console.log('Completely load data')
-    })
-  }
-
   openTools(event: any) {
   //  this.button = !this.button
     if(event) {

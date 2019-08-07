@@ -10,13 +10,13 @@
       <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
               mdbWavesEffect (click)="openmodal()">Create User</button>
     </div>
-  </div>
-  <table mdbTable>
+  </div><div>
+  <table mdbTable >
     <thead>
     <tr>
-      <th class="text-uppercase align-middle" mdbWavesEffect *ngFor="let head of headElements; let i = index" scope="col">{{head}}
+      <th class="text-uppercase align-middle"  *ngFor="let head of headElements; let i = index" scope="col">{{head}}
       </th>
-      <th mdbWavesEffect scope="col" style="text-align: center; width: 20%;" *ngIf="button === false" class="animated fadeIn">
+      <th  scope="col" style="text-align: center; width: 20%;" *ngIf="button === false" class="animated fadeIn">
         <button mdbBtn type="button" color="default" outline="true" size="sm" mdbWavesEffect (click)="openTools($event)">Tools</button>
       </th>
       <th mdbWavesEffect scope="col" style="text-align: center; width: 20%;" *ngIf="button === true" class="animated fadeIn">
@@ -47,6 +47,7 @@
     </tr>
     </tfoot>
   </table>
+</div>
   <!--
   <h4  class="md-form mb-3" style="text-align: center" mdbWavesEffect> There is no result content ..  </h4> -->
 </div>
